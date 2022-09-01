@@ -1,0 +1,57 @@
+syms x y z v s1 xt yt zt vs1 ran p1 p2 p3 p4 q1 q2 q3 q4
+
+t11 = 0; 
+t12 = 1;
+t13 = 0.7;
+t14 = 0.7;
+t15 = 1.7;
+
+x1 = 0;
+y1 = 3;
+z1 = 0;
+
+x2 = 6;
+y2 = 0;
+z2 = 0;
+
+x3 = 3;
+y3 = 4;
+z3 = 0;
+
+x4 = 4;
+y4 = 3;
+z4 = 0;
+
+x5 = 0;
+y5 = 0;
+z5 = 8;
+
+A = [   x1 y1 z1 -t11; 
+        x2 y2 z2 -t12;
+        x3 y3 z3 -t13;
+        x4 y4 z4 -t14;
+        x5 y5 z5 -t15   ]
+
+%traspose
+A_plus = inv(transpose(A) * A) * transpose(A)
+
+r1 = x1^2 + y1^2 + z1^2;
+r2 = x2^2 + y2^2 + z2^2; 
+r3 = x3^2 + y3^2 + z3^2;
+r4 = x4^2 + y4^2 + z4^2;
+r5 = x5^2 + y5^2 + z5^2;
+
+b = [r1/2; r2/2; r3/2; r4/2; r5/2];
+
+d = [-(t11^2)/2; -(t12^2)/2; -(t13^2)/2; -(t14^2)/2; -(t15^2)/2;];
+
+p = A_plus * b;
+q = A_plus * d;
+
+v = 8.7;
+
+res = [xt; yt; zt; v*s1];
+
+res = p + (v^2)*q
+
+
